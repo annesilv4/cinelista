@@ -4,7 +4,7 @@ import Header from "@/app/components/Header/index";
 import Footer from "@/app/components/Footer/index";
 
 export const metadata: Metadata = {
-  title: "Cinelista",
+  title: "CineLista",
   description: "Filmes e séries em seu lugar",
 };
 
@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body>
-        <Head />
+        <Header />
         {children}
         <Footer />
       </body>
