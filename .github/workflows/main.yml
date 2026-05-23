@@ -5,6 +5,9 @@ on:
   push: 
     branches: 
       - main
+    paths: # só dispara se arquivos nessas pastas mudarem
+      - "src/**" # só dispara no código fonte
+      - ".github/workflows/**" # mudanças nos próprios pipelines
   workflow_dispatch: # Habilita o botão "Run workflow" no Github Actions
   
 jobs:
@@ -20,6 +23,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
           
       - name: Instalação das depêndencias
         run: npm install
@@ -30,3 +35,30 @@ jobs:
           TMDB_API_URL: ${{ vars.TMDB_API_URL}}
           TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
           NEXT_PUBLIC_BASE_URL_IMG: ${{ vars.NEXT_PUBLIC_BASE_URL_IMG }}
+
+  test:
+    runs-on: ubuntu-latest # Imagem da maquina que vai ser usada no CI
+    needs: build
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v6
+
+      - name: Instalação do node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+          
+      - name: Instalação das depêndencias
+        run: npm install
+
+      - name: Rodar o lint
+        run: npm run lint
+
+      - name: Verificar formatação
+        run: npm run format -- -- check
+
+      - name: Rodar testes
+        run: npm run test
