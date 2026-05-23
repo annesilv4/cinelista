@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "eslint .",
     "format": "prettier --write ./*",
-    "test": "jest --ci",
-    "test:watch": "jest --watchAll"
+    "test": "jest"
   },
   "dependencies": {
     "axios": "^1.15.2",
