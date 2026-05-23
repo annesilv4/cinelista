@@ -4,7 +4,7 @@ import Header from "@/app/components/Header/index";
 import Footer from "@/app/components/Footer/index";
 
 export const metadata: Metadata = {
-  title: "CineLista",
+  title: "Cinelista",
   description: "Filmes e séries em seu lugar",
 };
 
