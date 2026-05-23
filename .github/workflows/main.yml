@@ -27,7 +27,7 @@ jobs:
           cache-dependency-path: package-lock.json
           
       - name: Instalação das depêndencias
-        run: npm install
+        run: npm ci
 
       - name: Rodar o build
         run: npm run build
@@ -52,7 +52,7 @@ jobs:
           cache-dependency-path: package-lock.json
           
       - name: Instalação das depêndencias
-        run: npm install
+        run: npm ci
 
       - name: Rodar o lint
         run: npm run lint
